@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Infinity Prospecção</title>
+<style>
+:root{--bg:#090312;--bg2:#130820;--purple:#9429ff;--purple2:#c15aff;--white:#fff;--muted:#b8aec4;--paper:#faf7ff;--ink:#21172b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--white)}
+section{position:relative;overflow:hidden}.hero{min-height:900px;padding:32px 4%;background:radial-gradient(circle at 78% 25%,#6f20a955,transparent 32%),var(--bg)}
+.nav{display:flex;align-items:center;justify-content:space-between}.logo{font-weight:900;letter-spacing:.5px}.logo span{display:inline-flex;background:var(--purple);padding:9px 16px;border-radius:22px}.nav a{color:#d9d0df;text-decoration:none;margin-left:28px;font-size:14px}
+.heroGrid{max-width:1360px;margin:115px auto 0;display:grid;grid-template-columns:1fr 560px;gap:60px;align-items:center}.pill{display:inline-block;background:#efe2ff;color:#5c18a4;padding:10px 15px;border-radius:999px;font-weight:800;font-size:13px}.darkpill{background:#35164e;color:#d7b7ff}
+h1{font-size:clamp(42px,5vw,68px);line-height:1.02;margin:22px 0;letter-spacing:-2px}.lead{font-size:19px;line-height:1.6;color:var(--muted);max-width:690px}
+.actions{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}.btn{padding:17px 24px;border-radius:30px;text-decoration:none;font-weight:800;display:inline-block}.primary{background:linear-gradient(90deg,var(--purple),var(--purple2));color:#fff}.secondary{border:1px solid #65447a;color:#fff;background:#170d22}
+.preview{height:330px;border:1px solid #49305d;border-radius:26px;background:#10071a;padding:26px;overflow:hidden;box-shadow:0 20px 80px #0008}.preview h3{margin:0 0 6px}.preview small{color:#8f8499}.track{display:flex;gap:20px;width:max-content;margin-top:30px;animation:marquee 22s linear infinite}.company{width:250px;height:180px;flex:0 0 250px;border:1px solid #382349;border-radius:18px;background:#180c25;padding:18px}.badge{display:inline-block;background:var(--purple);padding:7px 10px;border-radius:999px;font-size:10px;font-weight:800}.company h4{margin:20px 0 7px;font-size:15px}.company p{margin:0;color:#aaa0b4;font-size:12px}.score{font-size:23px;font-weight:900;color:var(--purple2);margin-top:22px}.company em{font-style:normal;color:#71677a;font-size:10px;margin-left:7px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-1080px)}}
+.section{padding:110px 4%}.dark{background:var(--bg)}.light{background:var(--paper);color:var(--ink)}.container{max-width:1360px;margin:auto}.section h2{font-size:44px;max-width:850px;margin:18px 0}.section p.sub{color:#857b8c;max-width:760px;line-height:1.6}.dark .sub{color:var(--muted)}
+.steps,.features,.plans,.faq{display:grid;gap:18px;margin-top:55px}.steps{grid-template-columns:1fr}.step{display:flex;gap:24px;padding:28px;border:1px solid #39264b;border-radius:22px;background:#11071a}.num{width:60px;height:60px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(135deg,var(--purple),var(--purple2));border:1px solid #c15aff;font-weight:900;flex:0 0 60px}.step h3{margin:0 0 8px}.step p{margin:0;color:var(--muted)}
+.features{grid-template-columns:repeat(3,1fr)}.feature{background:#fff;border:1px solid #e4dce9;border-radius:24px;padding:28px}.icon{width:48px;height:48px;border-radius:15px;background:#f0e2ff;color:#6e1aae;display:grid;place-items:center;font-size:22px;font-weight:900}.feature h3{margin:22px 0 8px}.feature p{margin:0;color:#817789;line-height:1.5}
+.plans{grid-template-columns:repeat(4,1fr)}.plan{background:#fff;border:1px solid #e0d7e7;border-radius:26px;padding:28px;overflow:hidden;position:relative}.plan:before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--purple2)}.plan h3{margin-top:28px}.price{font-size:30px;font-weight:900}.plan ul{padding-left:18px;color:#64596c;line-height:2}.plan .btn{width:100%;text-align:center}
+.faq{grid-template-columns:1fr}.faq details{border:1px solid #39264b;background:#11071a;border-radius:18px;padding:22px}.faq summary{cursor:pointer;font-weight:800}.faq p{color:var(--muted);line-height:1.5}
+.final{padding:100px 4%;background:var(--paper);color:var(--ink)}.final .container{display:flex;justify-content:space-between;align-items:center;gap:30px}.final h2{font-size:40px}
+.curve{position:absolute;width:700px;height:700px;border:2px solid #b950ff55;border-radius:50%;pointer-events:none}.c1{right:-300px;top:-260px}.c2{left:-420px;bottom:-400px}
+@media(max-width:900px){.heroGrid{grid-template-columns:1fr;margin-top:75px}.hero{min-height:auto;padding-bottom:90px}.preview{margin-top:30px}.features,.plans{grid-template-columns:1fr}.section{padding:80px 6%}.section h2{font-size:34px}.final .container{display:block}.final h2{font-size:32px}.nav a{display:none}.track{animation-duration:18s}}
+@media(prefers-reduced-motion:reduce){.track{animation:none}}
+</style>
+</head>
+<body>
+<section class="hero" id="inicio"><div class="curve c1"></div><div class="curve c2"></div>
+<nav class="nav"><div class="logo"><span>∞ INFINITY</span></div><div><a href="#como">Como funciona</a><a href="#planos">Planos</a><a href="#faq">FAQ</a></div></nav>
+<div class="heroGrid"><div>
+<span class="pill darkpill">PROSPECÇÃO COMERCIAL</span>
+<h1>Encontre empresas que precisam de novos clientes.</h1>
+<p class="lead">Pesquise por nicho e cidade, descubra oportunidades e organize sua prospecção em um só lugar.</p>
+<div class="actions"><a class="btn primary" href="https://infinity-prospect.netlify.app">Encontrar clientes agora →</a><a class="btn secondary" href="#como">Ver como funciona →</a></div>
+</div>
+<div class="preview"><h3>Empresas com alto potencial</h3><small>Exemplo visual • resultados em movimento</small>
+<div class="track">
+<div class="company"><span class="badge">ALTO POTENCIAL</span><h4>Clínica Aurora</h4><p>Saúde • Recife</p><div class="score">+28% <em>sinal de oportunidade</em></div></div>
+<div class="company"><span class="badge">ALTO POTENCIAL</span><h4>Nexa Tecnologia</h4><p>SaaS • São Paulo</p><div class="score">+34% <em>sinal de oportunidade</em></div></div>
+<div class="company"><span class="badge">OPORTUNIDADE</span><h4>Vitta Estética</h4><p>Estética • Fortaleza</p><div class="score">+21% <em>sinal de oportunidade</em></div></div>
+<div class="company"><span class="badge">OPORTUNIDADE</span><h4>Casa Norte</h4><p>Varejo • Belo Horizonte</p><div class="score">+17% <em>sinal de oportunidade</em></div></div>
+<div class="company"><span class="badge">ALTO POTENCIAL</span><h4>Clínica Aurora</h4><p>Saúde • Recife</p><div class="score">+28% <em>sinal de oportunidade</em></div></div>
+<div class="company"><span class="badge">ALTO POTENCIAL</span><h4>Nexa Tecnologia</h4><p>SaaS • São Paulo</p><div class="score">+34% <em>sinal de oportunidade</em></div></div>
+<div class="company"><span class="badge">OPORTUNIDADE</span><h4>Vitta Estética</h4><p>Estética • Fortaleza</p><div class="score">+21% <em>sinal de oportunidade</em></div></div>
+<div class="company"><span class="badge">OPORTUNIDADE</span><h4>Casa Norte</h4><p>Varejo • Belo Horizonte</p><div class="score">+17% <em>sinal de oportunidade</em></div></div>
+</div></div></div></section>
+<section class="section dark" id="como"><div class="container"><span class="pill darkpill">01 / TUTORIAL</span><h2>Como usar o Infinity em poucos passos</h2><p class="sub">Do primeiro filtro ao lead salvo, cada etapa foi pensada para reduzir trabalho manual.</p>
+<div class="steps">
+<div class="step"><div class="num">01</div><div><h3>Escolha o nicho e a cidade</h3><p>Defina o mercado e a localização que você quer prospectar.</p></div></div>
+<div class="step"><div class="num">02</div><div><h3>Encontre oportunidades</h3><p>O Infinity pesquisa e organiza empresas encontradas na web.</p></div></div>
+<div class="step"><div class="num">03</div><div><h3>Abra os detalhes</h3><p>Confira contexto, fonte e sinais úteis antes de abordar.</p></div></div>
+<div class="step"><div class="num">04</div><div><h3>Salve para abordar</h3><p>Guarde o lead e continue sua prospecção sem perder o histórico.</p></div></div>
+</div></div></section>
+<section class="section light"><div class="container"><span class="pill">02 / BENEFÍCIOS</span><h2>Menos busca manual. Mais tempo para vender.</h2><div class="features"><div class="feature"><div class="icon">⌕</div><h3>Encontre clientes</h3><p>Pesquise por nicho, cidade e serviço para descobrir novos contatos.</p></div><div class="feature"><div class="icon">◈</div><h3>Analise oportunidades</h3><p>Veja contexto, fonte e sinais úteis antes de abordar.</p></div><div class="feature"><div class="icon">✓</div><h3>Organize seus leads</h3><p>Salve empresas e mantenha a prospecção em ordem.</p></div></div></div></section>
+<section class="section light" id="planos"><div class="container"><span class="pill">03 / PLANOS</span><h2>Comece grátis e evolua conforme cresce</h2><div class="plans">
+<div class="plan"><h3>Grátis</h3><div class="price">R$ 0</div><p>Para começar sem cartão.</p><ul><li>25 pesquisas por mês</li><li>Salvar leads</li><li>Sem cartão</li></ul><a class="btn primary" href="https://infinity-prospect.netlify.app">Começar</a></div>
+<div class="plan"><h3>Básico</h3><div class="price">R$ 15,99</div><p>Para uma rotina enxuta.</p><ul><li>150 buscas por mês</li><li>Salvar e organizar leads</li><li>Fluxo de prospecção</li></ul><a class="btn primary" href="https://infinity-prospect.netlify.app">Escolher plano</a></div>
+<div class="plan"><h3>Pro</h3><div class="price">R$ 25,99</div><p>Para mais volume.</p><ul><li>500 buscas por mês</li><li>Mais volume de pesquisa</li><li>Recursos avançados</li></ul><a class="btn primary" href="https://infinity-prospect.netlify.app">Escolher plano</a></div>
+<div class="plan"><h3>Premium</h3><div class="price">R$ 48,99</div><p>Para escala.</p><ul><li>Mais escala</li><li>Mais volume</li><li>Operação comercial</li></ul><a class="btn primary" href="https://infinity-prospect.netlify.app">Escolher plano</a></div>
+</div></div></section>
+<section class="section dark" id="faq"><div class="container"><span class="pill darkpill">04 / FAQ</span><h2>Perguntas frequentes</h2><div class="faq">
+<details><summary>O que é prospecção B2B?</summary><p>É o processo de identificar empresas que podem ter interesse em um produto ou serviço e iniciar um contato comercial.</p></details>
+<details><summary>Como o Infinity encontra empresas?</summary><p>A primeira camada usa pesquisa web e organiza os resultados para prospecção.</p></details>
+<details><summary>Os dados do card são reais?</summary><p>Não. O card do Hero é apenas uma demonstração visual da experiência.</p></details>
+<details><summary>Posso salvar uma empresa para depois?</summary><p>Sim. O fluxo inclui salvar a empresa escolhida para continuar a abordagem.</p></details>
+</div></div></section>
+<section class="final"><div class="container"><div><h2>Pronto para encontrar seus próximos clientes?</h2><p>Abra o dashboard e faça sua primeira busca.</p></div><div class="actions"><a class="btn primary" href="#inicio">Encontrar clientes agora →</a><a class="btn secondary" href="#como">Abrir dashboard →</a></div></div></section>
+</body></html>

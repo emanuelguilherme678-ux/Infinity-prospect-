@@ -1,0 +1,13 @@
+Infinity Prospect
+
+Infinity Prospect é uma plataforma de prospecção e geração de leads para encontrar empresas por nicho e cidade, organizar oportunidades e apoiar a abordagem comercial.
+
+Fluxo atual:
+
+- pesquisar empresas por nicho e cidade;
+- receber resultados estruturados;
+- visualizar contexto e fonte;
+- salvar leads;
+- usar o dashboard para acompanhar a operação.
+
+A busca web da versão atual passa pelo endpoint /api/search, com a chave do Tavily mantida no ambiente do servidor.

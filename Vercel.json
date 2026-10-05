@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/dashboard", "destination": "/?view=dashboard" }
+  ],
+  "functions": {
+    "api/search.js": {
+      "maxDuration": 30
+    }
+  }
+}

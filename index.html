@@ -6265,6 +6265,8 @@ checkoutModalEl.addEventListener("click",e=>{if(e.target===checkoutModalEl)close
 
 function openCheckout(k){
  if(SUPABASE_READY&&!authUser){authService.openGate("Entre na sua conta para iniciar o pagamento.");return}
+ const CAKTO_CHECKOUT={basico:"https://pay.cakto.com.br/3bkrmbs_1242835",pro:"https://pay.cakto.com.br/yzs8ejn_1242848",premium:"https://pay.cakto.com.br/8gjxhcr_1242877"};
+ if(CAKTO_CHECKOUT[k]){window.location.href=CAKTO_CHECKOUT[k];return}
  const p=PLANS[k],price=PLAN_PRICES[k];if(!p||!price)return;
  const txid="INF"+Date.now().toString(36).toUpperCase();
  const hasKey=!!String(PIX_CONFIG.key||"").trim();

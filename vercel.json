@@ -6,6 +6,9 @@
   "functions": {
     "api/search.js": {
       "maxDuration": 30
+    },
+    "api/cakto/webhook.mjs": {
+      "maxDuration": 10
     }
   }
 }

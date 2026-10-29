@@ -906,7 +906,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
 }
 </script>
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Como começar?", "acceptedAnswer": {"@type": "Answer", "text": "Abra a central, escolha o estado, informe a cidade, selecione o tipo de empresa e gere as oportunidades."}}, {"@type": "Question", "name": "Preciso fazer login para conhecer o site?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A página inicial é pública. O login é solicitado quando você tenta gerar leads."}}, {"@type": "Question", "name": "Como o pagamento dos planos funciona?", "acceptedAnswer": {"@type": "Answer", "text": "O pagamento é feito por PIX. O comprovante é enviado pelo WhatsApp e a ativação é feita manualmente após a conferência."}}, {"@type": "Question", "name": "Meus leads ficam onde?", "acceptedAnswer": {"@type": "Answer", "text": "Quando sua conta está conectada, os dados de leads, pedidos e assinatura podem ser sincronizados com o Supabase. Também existe exportação de backup."}}, {"@type": "Question", "name": "Posso usar o site no celular?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. A interface foi estruturada para telas pequenas e o CTA principal fica acessível no fluxo mobile."}}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Como começar?", "acceptedAnswer": {"@type": "Answer", "text": "Abra a central, escolha o estado, informe a cidade, selecione o tipo de empresa e gere as oportunidades."}}, {"@type": "Question", "name": "Preciso fazer login para conhecer o site?", "acceptedAnswer": {"@type": "Answer", "text": "Não. A página inicial é pública. O login é solicitado quando você tenta gerar leads."}}, {"@type": "Question", "name": "Como o pagamento dos planos funciona?", "acceptedAnswer": {"@type": "Answer", "text": "O pagamento é feito no checkout seguro da Cakto. A ativação acontece automaticamente após a confirmação do pagamento."}}, {"@type": "Question", "name": "Meus leads ficam onde?", "acceptedAnswer": {"@type": "Answer", "text": "Quando sua conta está conectada, os dados de leads, pedidos e assinatura podem ser sincronizados com o Supabase. Também existe exportação de backup."}}, {"@type": "Question", "name": "Posso usar o site no celular?", "acceptedAnswer": {"@type": "Answer", "text": "Sim. A interface foi estruturada para telas pequenas e o CTA principal fica acessível no fluxo mobile."}}]}</script>
 
 <style id="infinity-v46-security">
 .auth-security-note{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:11px;line-height:1.55;color:var(--muted);text-align:center}.auth-security-note span{color:var(--accent)}
@@ -1214,7 +1214,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
           <div class="v36-faq landing-reveal delay-1">
             <details><summary>Como começar?</summary><p>Abra a central, escolha o estado, informe a cidade, selecione o tipo de empresa e gere as oportunidades.</p></details>
             <details><summary>Preciso fazer login para conhecer o site?</summary><p>Não. A página inicial é pública. O login é solicitado quando você tenta gerar leads.</p></details>
-            <details><summary>Como o pagamento dos planos funciona?</summary><p>O pagamento é feito por PIX. O comprovante é enviado pelo WhatsApp e a ativação é feita manualmente após a conferência.</p></details>
+            <details><summary>Como o pagamento dos planos funciona?</summary><p>O pagamento é feito no checkout seguro da Cakto. A ativação acontece automaticamente após a confirmação do pagamento.</p></details>
             <details><summary>Meus leads ficam onde?</summary><p>Quando sua conta está conectada, os dados de leads, pedidos e assinatura podem ser sincronizados com o Supabase. Também existe exportação de backup.</p></details>
             <details><summary>Posso usar o site no celular?</summary><p>Sim. A interface foi estruturada para telas pequenas e o CTA principal fica acessível no fluxo mobile.</p></details>
           </div>
@@ -1531,7 +1531,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
 
   <!-- CONFIG / API -->
   <section class="view" data-view="planos">
-    <div class="viewhead"><div><h1>Planos</h1><p>Escolha quantas buscas por mês você precisa. Pagamento por PIX.</p></div></div>
+    <div class="viewhead"><div><h1>Planos</h1><p>Escolha quantas buscas por mês você precisa. Pagamento pelo checkout seguro da Cakto.</p></div></div>
     <div id="planosRoot" class="pl-wrap"></div>
   </section>
 
@@ -6186,7 +6186,7 @@ function renderPlanosView(){
  if(pending){
   status=`<div class="pl-status pending">
    <div class="pl-st-top"><h2 class="pl-st-title">⏳ Pagamento em análise</h2><span class="pl-badge">${esc((PLANS[pendingPaymentOrder?.plan_id||currentPlan.pixPlanType]||{}).name||pendingPaymentOrder?.plans?.name||"")}</span></div>
-   <p class="pl-st-sub">Assim que conferirmos o seu PIX, o plano é ativado. Envie o comprovante no WhatsApp para agilizar. Enquanto isso, você segue com o limite do teste gratuito.</p>
+   <p class="pl-st-sub">Assim que o pagamento for confirmado, o plano é ativado automaticamente. Enquanto isso, você segue com o limite do teste gratuito.</p>
    <button type="button" class="primary" data-wa="1" style="margin-top:14px;width:100%">Enviar comprovante no WhatsApp</button>
   </div>`;
  }else if(limitHit){
@@ -6238,12 +6238,12 @@ function renderPlanosView(){
   <div class="pl-grid">${cards}</div>
   <div class="pl-free">Teste gratuito: ${PLANS.free.searches} buscas e ${PLANS.free.companies} empresas salvas.</div>
   <div class="pl-trust">
-   <div><b>Pague por PIX</b>Copie o código e pague no app do seu banco.</div>
-   <div><b>Sem renovação automática</b>Nada é cobrado sozinho. Para o mês seguinte, é só pagar de novo.</div>
-   <div><b>Confirmação por WhatsApp</b>Depois do PIX, envie o comprovante e ativamos seu plano.</div>
+   <div><b>Pague no checkout seguro</b>Você é levado à Cakto para pagar com Pix ou outra forma disponível.</div>
+   <div><b>Renovação automática</b>Sua assinatura renova sozinha até você cancelar.</div>
+   <div><b>Ativação automática</b>Assim que o pagamento é confirmado, seu plano é liberado.</div>
   </div>
   <div>
-   <details class="pl-faq"><summary>Como funciona o pagamento?</summary><p>1) Escolha o plano. 2) Copie o código PIX e pague no app do banco (o valor já vem preenchido). 3) Volte e toque em “Já paguei”, enviando o comprovante no WhatsApp. O plano é ativado manualmente depois que conferimos o pagamento.</p></details>
+   <details class="pl-faq"><summary>Como funciona o pagamento?</summary><p>1) Escolha o plano. 2) Você é levado ao checkout da Cakto e paga com Pix ou outra forma disponível. 3) Após a confirmação, o plano é liberado. A renovação é automática até o cancelamento.</p></details>
    <details class="pl-faq"><summary>O que acontece quando as buscas acabam?</summary><p>Você não perde nada: os leads salvos continuam no CRM. Para fazer novas buscas, escolha um plano ou aguarde a renovação mensal.</p></details>
    <details class="pl-faq"><summary>Onde ficam meus dados?</summary><p>Com a conta conectada, leads, pedidos e assinatura podem ser sincronizados com o Supabase. A exportação de backup continua disponível.</p></details>
   </div>`;

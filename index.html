@@ -82,7 +82,7 @@
 [data-palette-option]{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 14px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
 [data-palette-option]:hover{border-color:var(--accent-dim)}
 [data-palette-option].on{border-color:var(--accent);background:rgba(var(--accent-rgb),.16);color:var(--accent-soft)}
-*{box-sizing:border-box}
+.lib-block button.ghost,.lib-block button.primary{font:inherit;font-size:13px;font-weight:600;border-radius:10px;padding:9px 14px;cursor:pointer;border:1px solid var(--line)}.lib-block button.ghost{background:var(--surface2);color:var(--text)}.lib-block button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.lib-block{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin:0 0 16px}.lib-block h3{margin:0 0 6px;font-size:15px}.lib-sub{color:var(--muted);font-size:13px;margin:0 0 12px}.lib-tokens{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}.lib-token{display:flex;align-items:center;gap:8px;font-size:12px}.lib-token i{width:22px;height:22px;border-radius:6px;border:1px solid var(--line);flex:none}.lib-token code{color:var(--muted);margin-left:auto;font-size:11px}.lib-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.lib-grid{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.lib-badge{background:rgba(var(--accent-rgb),.16);color:var(--accent-soft);border:1px solid var(--accent-dim);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:600}.lib-card{background:var(--surface2);border:1px solid var(--line);border-radius:var(--radius);padding:14px;min-width:200px;max-width:280px}.lib-card p{margin:6px 0 0;color:var(--muted);font-size:13px}.lib-lift{transition:transform .25s ease,box-shadow .25s ease}.lib-lift:hover{transform:translateY(-4px);box-shadow:0 14px 30px -10px rgba(var(--accent-rgb),.5)}.lib-input{background:var(--surface2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:220px}.lib-glow{width:200px;height:90px;border-radius:var(--radius);background:linear-gradient(120deg,var(--accent-dim),var(--accent),var(--accent-soft),var(--accent));background-size:300% 300%;animation:libShift 6s ease infinite;display:flex;align-items:center;justify-content:center;color:var(--text);font-weight:700;box-shadow:0 0 30px -6px rgba(var(--accent-rgb),.6)}.lib-glow span{text-shadow:0 1px 6px rgba(0,0,0,.4)}@keyframes libShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}@media (prefers-reduced-motion: reduce){.lib-glow{animation:none}}.lib-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}.lib-form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted)}.lib-form input,.lib-form select{background:var(--surface2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit}.lib-output{width:100%;margin-top:12px;background:var(--surface2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px;font:13px/1.5 ui-monospace,monospace;box-sizing:border-box}*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 body{margin:0;background:radial-gradient(1000px 560px at 86% 0%,rgba(var(--accent-rgb),.28) 0,transparent 58%),radial-gradient(900px 540px at 5% 80%,rgba(var(--accent-rgb),.22) 0,transparent 60%),var(--bg);color:var(--text);font-family:'Inter',system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
@@ -1144,6 +1144,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
     <button class="navitem" id="navExportar" title="Exportar backup"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 15V3m0 12 4-4m-4 4-4-4M4 17v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="navlabel">Exportar backup</span></button>
     <button class="navitem" data-view="planos" title="Planos"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.6"/></svg><span class="navlabel">Planos</span></button>
     <button class="navitem" data-view="config" title="Configurações"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14.2 3H9.8l-.4 2.6a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-.9c.6.5 1.3.9 2 1.2l.4 2.6h4.4l.4-2.6c.7-.3 1.4-.7 2-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg><span class="navlabel">Configurações</span></button>
+    <button class="navitem" data-view="biblioteca" title="Biblioteca de design"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="3" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="13" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.8"/><rect x="13" y="13" width="8" height="8" rx="2" stroke="currentColor" stroke-width="1.8"/></svg><span>Biblioteca</span></button>
     <button class="navitem hidden" id="navAdmin" data-view="admin" title="Administração"><span style="font-size:15px">🛡️</span><span class="navlabel">Administração</span><span class="dot-badge" id="navBadgeAdmin">0</span></button>
   </nav>
   <div class="sidebar-footer">
@@ -1575,6 +1576,28 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
     <div id="planosRoot" class="pl-wrap"></div>
   </section>
 
+  <section class="view" data-view="biblioteca">
+    <div class="viewhead"><div><h1>Biblioteca de design</h1><p>Tokens, componentes, efeitos e gerador de prompts. Tudo funciona sem IA e sem custo.</p></div></div>
+    <div class="lib-block"><h3>1. Tokens de cor (paleta ativa)</h3><p class="lib-sub">Os valores mudam com a paleta escolhida em Configurações → Aparência.</p><div id="libTokens" class="lib-tokens"></div><div class="lib-actions"><button type="button" class="ghost" id="libCopyTokens">Copiar tokens (CSS)</button><button type="button" class="ghost" id="libDownloadDesign">Baixar DESIGN.md</button></div></div>
+    <div class="lib-block"><h3>2. Componentes</h3><div class="lib-grid">
+      <button type="button" class="primary">Botão principal</button>
+      <button type="button" class="ghost">Botão secundário</button>
+      <span class="lib-badge">Oportunidade</span>
+      <div class="lib-card"><b>Card de exemplo</b><p>Use para leads, planos ou resultados.</p></div>
+      <input class="lib-input" placeholder="Campo de texto" aria-label="Campo de exemplo">
+    </div></div>
+    <div class="lib-block"><h3>3. Efeitos e motion</h3><div class="lib-grid"><div class="lib-glow"><span>Brilho animado</span></div><div class="lib-card lib-lift"><b>Hover com elevação</b><p>Passe o mouse para ver.</p></div></div></div>
+    <div class="lib-block"><h3>4. Gerador de prompts (sem IA)</h3><p class="lib-sub">Preencha os campos. O prompt pronto aparece abaixo para você copiar em qualquer IA.</p>
+      <div class="lib-form">
+        <label>Tipo de página<select id="pgType"><option>Landing page</option><option>Dashboard</option><option>Loja online</option><option>Portfólio</option><option>Página de planos</option></select></label>
+        <label>Nicho ou produto<input id="pgNiche" placeholder="Ex.: clínica odontológica em Recife"></label>
+        <label>Estilo<select id="pgStyle"><option>Moderno e escuro</option><option>Claro e minimalista</option><option>Ousado e colorido</option></select></label>
+        <label>Paleta<select id="pgPalette"><option value="brasa">Vermelho intenso</option><option value="roxo">Roxo profundo</option><option value="oceano">Oceano</option></select></label>
+      </div>
+      <div class="lib-actions"><button type="button" class="primary" id="pgBuild">Gerar prompt</button><button type="button" class="ghost" id="pgCopy">Copiar prompt</button></div>
+      <textarea id="pgOutput" class="lib-output" readonly rows="9" aria-label="Prompt gerado"></textarea>
+    </div>
+  </section>
   <section class="view" data-view="config">
     <div class="viewhead"><div><h1>Configurações</h1><p>Gerencie sua conta, plano e integrações.</p></div></div>
     <section class="palette-picker" style="margin:0 0 18px"><h3 style="margin:0 0 6px;font-size:15px">Aparência</h3><p style="color:var(--muted);font-size:13px;margin:0 0 10px">Escolha a paleta de cores do site. A escolha fica salva neste navegador.</p><div id="paletteOptions" style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" class="ghost" data-palette-option="brasa">Brasa e floresta (padrão)</button><button type="button" class="ghost" data-palette-option="roxo">Roxo</button><button type="button" class="ghost" data-palette-option="oceano">Oceano</button></div></section>
@@ -5647,6 +5670,7 @@ function renderCurrentView(){
   case "porCidade":return renderPorCidade();
   case "planos":return renderPlanosView();
   case "config":return renderConfigView();
+  case "biblioteca":return renderBiblioteca();
   case "admin":return renderAdminView();
  }
 }
@@ -6377,6 +6401,39 @@ async function confirmPixPaid(){
 }
 
 /* ================= CONFIG / API VIEW ================= */
+function libTokenList(){
+ const cs=getComputedStyle(document.documentElement);
+ const names=["bg","sidebar","surface","surface2","line","line-soft","text","muted","accent","accent-dim","accent-soft","green","amber","red","gray"];
+ return names.map(n=>({name:"--"+n,value:cs.getPropertyValue("--"+n).trim()}));
+}
+function libDesignMd(){
+ const t=libTokenList();
+ const pal=document.documentElement.getAttribute("data-palette")||"brasa";
+ return ["# DESIGN.md — Infinity Sites","","Paleta ativa: "+pal,"","## Cores (tokens)","",...t.map(x=>"- `"+x.name+"`: "+x.value),"","## Componentes","","- Botão principal: fundo var(--accent), texto claro, cantos de 10px.","- Botão secundário: borda var(--line), fundo var(--surface).","- Card: fundo var(--surface), borda var(--line), raio var(--radius).","","## Tipografia","","- Títulos e textos: Inter, system-ui.","","## Espaçamento","","- Base de 4px. Cards com padding de 16 a 24px."].join("\n");
+}
+async function libCopy(text,okMsg){
+ try{await navigator.clipboard.writeText(text);toast(okMsg)}
+ catch(e){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast(okMsg)}catch(err){toast("Não foi possível copiar. Selecione o texto e copie.")}ta.remove()}
+}
+function libPrompt(){
+ const type=document.getElementById("pgType").value,niche=(document.getElementById("pgNiche").value||"").trim()||"o nicho do cliente",style=document.getElementById("pgStyle").value,pal=document.getElementById("pgPalette").selectedOptions[0].textContent;
+ return ["Crie uma "+type.toLowerCase()+" para "+niche+".","","Estilo: "+style+".","Paleta: "+pal+" (use as cores como destaques, com contraste alto para leitura).","Layout: seções claras, cards com espaçamento generoso, tipografia Inter, botões de destaque com boa área de toque no celular.","Seções: título forte, benefícios, prova social, planos ou chamada para ação, perguntas frequentes.","Entregue: HTML, CSS e JavaScript em um único arquivo, responsivo, sem dependências pesadas."].join("\n");
+}
+function renderBiblioteca(){
+ const box=document.getElementById("libTokens");
+ if(box){box.innerHTML=libTokenList().map(x=>'<div class="lib-token"><i style="background:'+x.value+'"></i><span>'+x.name+'</span><code>'+x.value+'</code></div>').join("")}
+ const pp=document.getElementById("pgPalette");
+ if(pp){pp.value=document.documentElement.getAttribute("data-palette")||"brasa"}
+}
+document.addEventListener("click",e=>{
+ const t=e.target;
+ if(!t||!t.closest)return;
+ if(t.closest("#libCopyTokens"))libCopy(libTokenList().map(x=>x.name+": "+x.value+";").join("\n"),"Tokens copiados.");
+ if(t.closest("#libDownloadDesign")){try{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([libDesignMd()],{type:"text/markdown"}));a.download="DESIGN.md";document.body.appendChild(a);a.click();a.remove()}catch(err){toast("Não foi possível baixar o arquivo.")}}
+ if(t.closest("#pgBuild"))document.getElementById("pgOutput").value=libPrompt();
+ if(t.closest("#pgCopy"))libCopy(document.getElementById("pgOutput").value||libPrompt(),"Prompt copiado.");
+});
+document.getElementById("pgPalette")?.addEventListener("change",e=>applyPalette(e.target.value));
 const PALETTES=["brasa","roxo","oceano"];
 function applyPalette(key){
  const k=PALETTES.includes(key)?key:"brasa";

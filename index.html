@@ -1109,10 +1109,10 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
     <button type="button" class="auth-google" id="authGoogleBtn"><span style="font-size:18px;font-weight:900;font-family:Arial,sans-serif">G</span><span>Continuar com Google</span></button>
     <div class="auth-divider"><span>ou entre com e-mail</span></div>
     <form id="authForm" class="auth-form" novalidate>
-      <div class="auth-field hidden" id="authNameWrap"><label for="authName">Nome</label><input id="authName" type="text" autocomplete="name" maxlength="80" placeholder="Seu nome"></div>
-      <div class="auth-field"><label for="authEmail">E-mail</label><input id="authEmail" type="email" autocomplete="email" inputmode="email" required maxlength="160" placeholder="voce@exemplo.com"></div>
-      <div class="auth-field"><label for="authPassword">Senha</label><input id="authPassword" type="password" autocomplete="current-password" required minlength="9" maxlength="128" placeholder="Mínimo de 9 caracteres"></div>
-      <div class="auth-field hidden" id="authPasswordConfirmWrap"><label for="authPasswordConfirm">Confirmar senha</label><input id="authPasswordConfirm" type="password" autocomplete="new-password" minlength="9" maxlength="128" placeholder="Repita sua senha"></div>
+      <div class="auth-field hidden" id="authNameWrap"><label for="authName">Nome</label><input id="authName" type="text" autocomplete="name" maxlength="80" placeholder="Seu nome" aria-label="Seu nome"></div>
+      <div class="auth-field"><label for="authEmail">E-mail</label><input id="authEmail" type="email" autocomplete="email" inputmode="email" required maxlength="160" placeholder="voce@exemplo.com" aria-label="voce@exemplo.com"></div>
+      <div class="auth-field"><label for="authPassword">Senha</label><input id="authPassword" type="password" autocomplete="current-password" required minlength="9" maxlength="128" placeholder="Mínimo de 9 caracteres" aria-label="Mínimo de 9 caracteres"></div>
+      <div class="auth-field hidden" id="authPasswordConfirmWrap"><label for="authPasswordConfirm">Confirmar senha</label><input id="authPasswordConfirm" type="password" autocomplete="new-password" minlength="9" maxlength="128" placeholder="Repita sua senha" aria-label="Repita sua senha"></div>
       <button type="submit" class="primary" id="authSubmit">Entrar</button>
     </form>
     <div id="authMessage" class="auth-message info" aria-live="polite"></div>
@@ -1384,7 +1384,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
         </div>
 
         <div class="prospect-city-row">
-          <input type="text" id="pr_apiCidade" class="prospect-city" placeholder="Escolha um estado primeiro" disabled autocomplete="address-level2">
+          <input type="text" id="pr_apiCidade" class="prospect-city" placeholder="Escolha um estado primeiro" disabled autocomplete="address-level2" aria-label="Escolha um estado primeiro">
           <span class="prospect-chevron">⌄</span>
         </div>
 
@@ -1494,7 +1494,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
       <p class="prospect-note">A Infinity Prospect encontra empresas reais e organiza os sinais de oportunidade para você decidir onde vale investir seu próximo contato.</p>
 
       <div class="prospect-results-wrap">
-        <div class="prospect-results-search"><input type="text" id="pr_search" placeholder="Buscar nos resultados..."></div>
+        <div class="prospect-results-search"><input type="text" id="pr_search" placeholder="Buscar nos resultados..." aria-label="Buscar nos resultados..."></div>
         <section class="panel"><div class="list" id="pr_list"></div></section>
         <div class="loadmore hidden" id="pr_loadmore"><button class="secondary" id="pr_loadmoreBtn">Carregar mais</button></div>
       </div>
@@ -1520,7 +1520,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
   <!-- ABORDADAS -->
   <section class="view" data-view="abordadas">
     <div class="viewhead"><div><h1>Empresas abordadas</h1><p>Organizadas por etapa da conversa.</p></div></div>
-    <div class="toolbar"><input type="text" id="ab_search" placeholder="Buscar nas abordadas..."></div>
+    <div class="toolbar"><input type="text" id="ab_search" placeholder="Buscar nas abordadas..." aria-label="Buscar nas abordadas..."></div>
     <div class="kgrid" id="ab_grid"></div>
   </section>
 
@@ -1547,7 +1547,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
   <section class="view" data-view="todas">
     <div class="viewhead"><div><h1>Todas as empresas</h1><p>Base completa, com busca e paginação.</p></div></div>
     <div class="toolbar">
-      <input type="text" id="td_search" placeholder="Buscar...">
+      <input type="text" id="td_search" placeholder="Buscar..." aria-label="Buscar...">
     </div>
     <details class="collapsible">
       <summary>Filtros <span class="filter-count hidden" id="td_filterCount">0</span></summary>
@@ -1599,7 +1599,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
     <div class="lib-block"><p class="lib-sub">Preencha os campos. O prompt pronto aparece abaixo para você copiar em qualquer IA.</p>
       <div class="lib-form">
         <label>Tipo de página<select id="pgType"><option>Landing page</option><option>Dashboard</option><option>Loja online</option><option>Portfólio</option><option>Página de planos</option></select></label>
-        <label>Nicho ou produto<input id="pgNiche" placeholder="Ex.: clínica odontológica em Recife"></label>
+        <label>Nicho ou produto<input id="pgNiche" placeholder="Ex.: clínica odontológica em Recife" aria-label="Ex.: clínica odontológica em Recife"></label>
         <label>Estilo<select id="pgStyle"><option>Moderno e escuro</option><option>Claro e minimalista</option><option>Ousado e colorido</option></select></label>
         <label>Paleta<select id="pgPalette"><option value="brasa">Vermelho intenso</option><option value="roxo">Roxo profundo</option><option value="oceano">Oceano</option></select></label>
       </div>
@@ -1636,7 +1636,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
       <div id="apiProviderNote" class="status-msg info" style="margin-top:2px"></div>
       <div class="cfg-row" id="apiBaseUrlRow" style="flex-direction:column;align-items:stretch;gap:6px">
         <label style="font-size:12px;color:var(--muted);font-weight:600">Base URL</label>
-        <input type="text" id="apiBaseUrl" placeholder="https://sua-api.exemplo.com" style="background:var(--surface2);border:1px solid var(--line);border-radius:9px;padding:10px;color:var(--text)">
+        <input type="text" id="apiBaseUrl" placeholder="https://sua-api.exemplo.com" style="background:var(--surface2);border:1px solid var(--line);border-radius:9px;padding:10px;color:var(--text)" aria-label="https://sua-api.exemplo.com">
       </div>
       <div class="cfg-row" style="flex-direction:column;align-items:stretch;gap:6px">
         <label style="font-size:12px;color:var(--muted);font-weight:600">Credenciais</label>
@@ -1713,24 +1713,24 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
 <div class="field full"><label for="name">Empresa *</label><input id="name" required></div>
 <div class="field"><label for="owner">Responsável</label><input id="owner"></div>
 <div class="field"><label for="razaoSocial">Razão social</label><input id="razaoSocial"></div>
-<div class="field"><label for="cnpj">CNPJ</label><input id="cnpj" placeholder="Quando disponível"></div>
-<div class="field"><label for="nicho">Nicho</label><input id="nicho" placeholder="Ex.: Barbearia" list="nichoOptions"></div>
+<div class="field"><label for="cnpj">CNPJ</label><input id="cnpj" placeholder="Quando disponível" aria-label="Quando disponível"></div>
+<div class="field"><label for="nicho">Nicho</label><input id="nicho" placeholder="Ex.: Barbearia" list="nichoOptions" aria-label="Ex.: Barbearia"></div>
 <div class="field"><label for="cidade">Cidade</label><input id="cidade"></div>
-<div class="field"><label for="estado">Estado (UF)</label><input id="estado" maxlength="2" placeholder="RN"></div>
+<div class="field"><label for="estado">Estado (UF)</label><input id="estado" maxlength="2" placeholder="RN" aria-label="RN"></div>
 <div class="field"><label for="address">Endereço</label><input id="address"></div>
 </div></div>
 <div class="group"><div class="group-title">Contato</div><div class="form">
-<div class="field"><label for="phone">WhatsApp</label><input id="phone" inputmode="tel" placeholder="5584999999999"></div>
+<div class="field"><label for="phone">WhatsApp</label><input id="phone" inputmode="tel" placeholder="5584999999999" aria-label="5584999999999"></div>
 <div class="field"><label for="tel">Telefone</label><input id="tel" inputmode="tel"></div>
 <div class="field"><label for="email">E-mail</label><input id="email" type="email"></div>
-<div class="field"><label for="instagram">Instagram</label><input id="instagram" placeholder="@empresa"></div>
+<div class="field"><label for="instagram">Instagram</label><input id="instagram" placeholder="@empresa" aria-label="@empresa"></div>
 <div class="field"><label for="facebook">Facebook</label><input id="facebook"></div>
 <div class="field"><label for="maps">Google Maps</label><input id="maps"></div>
 </div></div>
 <div class="group"><div class="group-title">Presença digital</div><div class="form">
-<div class="field"><label for="site">Site atual</label><input id="site" placeholder="https://..."></div>
+<div class="field"><label for="site">Site atual</label><input id="site" placeholder="https://..." aria-label="https://..."></div>
 <div class="field"><label for="siteType">Situação do site</label><select id="siteType"><option>Não encontrado</option><option>Básico</option><option>Bom</option><option>Profissional</option></select></div>
-<div class="field"><label for="rating">Avaliação no Google</label><input id="rating" placeholder="5,0"></div>
+<div class="field"><label for="rating">Avaliação no Google</label><input id="rating" placeholder="5,0" aria-label="5,0"></div>
 <div class="field"><label for="reviews">Nº de avaliações</label><input id="reviews" inputmode="numeric"></div>
 </div></div>
 <div class="group"><div class="group-title">Prospecção</div><div class="form">
@@ -1738,7 +1738,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
 <div class="field"><label for="firstContactDate">Primeiro contato</label><input id="firstContactDate" type="date"></div>
 <div class="field"><label for="lastContactDate">Último contato</label><input id="lastContactDate" type="date"></div>
 <div class="field"><label for="conversionDate">Data de conversão (Cliente)</label><input id="conversionDate" type="date"></div>
-<div class="field"><label for="valorPotencial">Valor potencial (R$)</label><input id="valorPotencial" type="number" placeholder="Opcional"></div>
+<div class="field"><label for="valorPotencial">Valor potencial (R$)</label><input id="valorPotencial" type="number" placeholder="Opcional" aria-label="Opcional"></div>
 <div class="field full"><label for="needs">Necessidades / oportunidades</label><textarea id="needs" placeholder="Ex.: não tem site, Instagram desatualizado..."></textarea></div>
 <div class="field full"><label for="estrategiaSugerida">Estratégia sugerida</label><textarea id="estrategiaSugerida" placeholder="Como pretende abordar essa empresa"></textarea></div>
 <div class="field full"><label for="objecoes">Objeções possíveis</label><textarea id="objecoes" placeholder="O que essa empresa pode alegar pra não fechar"></textarea></div>
@@ -5976,8 +5976,8 @@ function openFicha(id){
     <div class="ficha-finance-card">
       <div class="ficha-finance-head"><div><strong>Resultado financeiro</strong><span>Registre quanto a empresa faturou e quanto virou lucro.</span></div><span class="ficha-finance-mark">R$</span></div>
       <div class="ficha-finance-grid">
-        <label><span>Faturamento (R$)</span><input id="fichaFaturamento" type="number" min="0" step="0.01" inputmode="decimal" value="${parseMoney(l.faturamento)?parseMoney(l.faturamento).toFixed(2):""}" placeholder="0,00"></label>
-        <label><span>Lucro (R$)</span><input id="fichaLucro" type="number" min="0" step="0.01" inputmode="decimal" value="${parseMoney(l.lucro)?parseMoney(l.lucro).toFixed(2):""}" placeholder="0,00"></label>
+        <label><span>Faturamento (R$)</span><input id="fichaFaturamento" type="number" min="0" step="0.01" inputmode="decimal" value="${parseMoney(l.faturamento)?parseMoney(l.faturamento).toFixed(2):""}" placeholder="0,00" aria-label="0,00"></label>
+        <label><span>Lucro (R$)</span><input id="fichaLucro" type="number" min="0" step="0.01" inputmode="decimal" value="${parseMoney(l.lucro)?parseMoney(l.lucro).toFixed(2):""}" placeholder="0,00" aria-label="0,00"></label>
       </div>
       <div class="ficha-finance-actions">
         <span>${l.resultadoAt?"Último registro: "+fmtDateTime(l.resultadoAt):"Nenhum resultado financeiro registrado ainda."}</span>
@@ -5991,7 +5991,7 @@ function openFicha(id){
     <h3>Registrar atividade</h3>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
      <select id="fichaActType" style="background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:8px;color:var(--text);font-size:13px"><option>Contato</option><option>WhatsApp</option><option>Ligação</option><option>Instagram</option><option>E-mail</option><option>Proposta</option><option>Reunião</option><option>Nota</option></select>
-     <input type="text" id="fichaActNote" placeholder="O que aconteceu?" style="flex:1;min-width:160px;background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:8px;color:var(--text);font-size:13px">
+     <input type="text" id="fichaActNote" placeholder="O que aconteceu?" style="flex:1;min-width:160px;background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:8px;color:var(--text);font-size:13px" aria-label="O que aconteceu?">
      <button class="secondary" data-action="ficha-add-activity">+ Registrar</button>
     </div>
     <div id="fichaTimeline">${(l.activities||[]).length?[...l.activities].reverse().map(a=>`

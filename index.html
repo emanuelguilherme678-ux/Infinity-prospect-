@@ -5025,7 +5025,11 @@ body:not(.landing-mode) .prospect-check{
 @media(max-width:1000px){.prospect-layout{grid-template-columns:1fr}.prospect-side-card{position:relative;top:auto;min-height:0;padding-bottom:90px}.prospect-side-footer{position:absolute}.prospect-hero{text-align:left}}
 @media(max-width:640px){.prospect-shell{padding:40px 16px 90px}.prospect-hero h1{font-size:40px;letter-spacing:-2px}.prospect-hero p{font-size:13px}.prospect-trust-row span{font-size:9px}.prospect-form-card{padding:16px 14px;border-radius:20px}.prospect-side-card{border-radius:20px;padding:19px}.prospect-side-card h2{font-size:28px}.prospect-search-btn{height:54px}.prospect-chat{right:16px;bottom:16px}}
 
-</style></head><body>
+</style><style id="encontrar-clientes-vermelho">
+/* Tela Encontrar clientes: acento vermelho no lugar do roxo (escopo restrito) */
+.prospect-reference{--accent:#e5484d;--accent-dim:#7a1f22;--accent-soft:#ffd6d7;background:radial-gradient(500px 330px at 50% 8%,rgba(229,72,77,.08),transparent 72%)!important}
+</style>
+</head><body>
   ${hero}
   <section class="grid"><h2>${profile.sectionLabel}</h2><div class="services-grid">${servicesHTML}</div></section>
   <section class="grid" style="background:${profile.surface};text-align:center;padding-top:60px;padding-bottom:60px">

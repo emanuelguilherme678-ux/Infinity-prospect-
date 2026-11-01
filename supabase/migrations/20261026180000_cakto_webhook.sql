@@ -1,5 +1,5 @@
 -- Migração formal: cakto_webhook (criada em 26/10/2026 a partir de db/CAKTO_WEBHOOK_SQL_DRAFT.sql)
--- NÃO APLICADA. Só aplicar após revisão humana e aprovação explícita.
+-- APLICADA no projeto infinity sites (migração cakto_webhook, versão 20261029003317).
 
 -- Fail closed before making changes if the existing application schema differs.
 do $$

@@ -1358,6 +1358,18 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
 
   <!-- PROSPECÇÃO / CENTRAL DE PROSPECÇÃO -->
   <section class="view prospect-reference" data-view="prospeccao">
+<style>
+.prospect-reference .prospect-trust-row{display:none}
+.prospect-reference .prospect-form-card{background:var(--surface);border:1px solid var(--line);box-shadow:none;border-radius:var(--radius);padding:24px;counter-reset:passo}
+.prospect-reference .prospect-field>label,.prospect-reference .prospect-city-row>label{counter-increment:passo;display:block;margin-bottom:8px;color:var(--text);font-weight:600}
+.prospect-reference .prospect-field>label::before{content:counter(passo) ". ";color:var(--muted)}
+.prospect-reference .prospect-search-btn{width:100%;margin-top:8px}
+.prospect-reference .prospect-advanced summary{cursor:pointer;color:var(--muted);padding:8px 0}
+@media (max-width:640px){
+ .prospect-reference .prospect-form-card{padding:16px}
+}
+</style>
+
     <div class="prospect-shell">
       <div class="prospect-hero">
         <div class="prospect-overline"><span></span> CENTRAL DE OPORTUNIDADES</div>

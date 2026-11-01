@@ -1360,9 +1360,9 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
   <section class="view prospect-reference" data-view="prospeccao">
 <style>
 .prospect-reference .prospect-trust-row{display:none}
-.prospect-reference .prospect-form-card{background:var(--surface);border:1px solid var(--line);box-shadow:none;border-radius:var(--radius);padding:24px;counter-reset:passo}
-.prospect-reference .prospect-field>label,.prospect-reference .prospect-city-row>label{counter-increment:passo;display:block;margin-bottom:8px;color:var(--text);font-weight:600}
-.prospect-reference .prospect-field>label::before{content:counter(passo) ". ";color:var(--muted)}
+.prospect-reference .prospect-form-card{background:var(--surface);border:1px solid var(--line);box-shadow:none;border-radius:var(--radius);padding:24px}
+.prospect-reference .prospect-field>label{display:block;margin-bottom:8px;color:var(--text);font-weight:600}
+.prospect-reference .prospect-step{margin:0 0 8px;color:var(--text);font-weight:600}
 .prospect-reference .prospect-search-btn{width:100%;margin-top:8px}
 .prospect-reference .prospect-advanced summary{cursor:pointer;color:var(--muted);padding:8px 0}
 @media (max-width:640px){
@@ -1373,15 +1373,16 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
     <div class="prospect-shell">
       <div class="prospect-hero">
         <div class="prospect-overline"><span></span> CENTRAL DE OPORTUNIDADES</div>
-        <h1>Encontre empresas que<br><em>podem virar clientes.</em></h1>
-        <p>Escolha o mercado. A Infinity Prospect organiza o cenário para você chegar na empresa certa com uma abordagem melhor.</p>
+        <h1>Encontre <em>clientes</em></h1>
+        <p>Escolha onde buscar, o tipo de empresa e o seu serviço. A lista mostra primeiro quem tem mais chance de comprar.</p>
         <div class="prospect-trust-row"><span>⌁ Dados locais</span><span>◎ Priorização por oportunidade</span><span>↗ Feito para vender</span></div>
       </div>
 
       <div class="prospect-layout">
         <div class="prospect-main-column">
       <div class="prospect-form-card">
-        <div class="prospect-select-wrap">
+        <p class="prospect-step">1. Onde buscar</p>
+<div class="prospect-select-wrap">
           <button type="button" class="prospect-select" id="pr_stateBtn" aria-expanded="false">
             <span id="pr_stateLabel">Selecione um estado</span><span class="prospect-chevron">⌄</span>
           </button>
@@ -1414,7 +1415,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
       </div>
 
       <div class="prospect-field">
-        <label>Tipo de empresa</label>
+        <label>2. Tipo de empresa</label>
         <div class="prospect-custom-select" id="pr_nichoSelect">
           <button type="button" class="prospect-select" aria-expanded="false"><span id="pr_nichoLabel">Ex: Barbearia</span><span class="prospect-chevron">⌄</span></button>
           <div class="prospect-dropdown prospect-small-dropdown">
@@ -1491,7 +1492,7 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
       </div>
 
       <div class="prospect-field">
-        <label>Seu serviço</label>
+        <label>3. Seu serviço</label>
         <div class="prospect-custom-select" id="pr_serviceSelect">
           <button type="button" class="prospect-select" aria-expanded="false"><span id="pr_serviceLabel">Ex: Criação de sites</span><span class="prospect-chevron">⌄</span></button>
           <div class="prospect-dropdown prospect-small-dropdown">
@@ -5864,6 +5865,44 @@ function renderProspeccao(){
  renderPaged("pr",data,state.pages.prospeccao);
 }
 
+/* ================= LISTA PAGINADA (Encontrar clientes e Todas as empresas) ================= */
+const PAGED_KEYS={pr:"prospeccao",td:"todas"};
+function renderPaged(prefix,data,page){
+ const key=PAGED_KEYS[prefix];
+ const list=document.getElementById(prefix+"_list");
+ if(!key||!list)return;
+ const size=state.pageSize||50;
+ const shown=data.slice(0,(page||1)*size);
+ if(data.length===0){
+  list.innerHTML=leads.length===0?emptyStateHTML("Nenhuma empresa encontrada."):emptyHTML("Nenhuma empresa encontrada com estes filtros.");
+ }else{
+  list.innerHTML=shown.map(cardHTML).join("");
+ }
+ const more=document.getElementById(prefix+"_loadmore");
+ const btn=document.getElementById(prefix+"_loadmoreBtn");
+ if(more)more.classList.toggle("hidden",shown.length>=data.length);
+ if(btn)btn.onclick=()=>{state.pages[key]=(state.pages[key]||1)+1;renderCurrentView()};
+}
+function renderTodas(){
+ const q=document.getElementById("td_search").value.trim();
+ const status=document.getElementById("td_status").value;
+ const site=document.getElementById("td_siteType").value;
+ const prio=document.getElementById("td_priority").value;
+ const wa=document.getElementById("td_hasWhats").checked;
+ const ig=document.getElementById("td_hasInsta").checked;
+ const sort=document.getElementById("td_sort").value;
+ let data=leads.filter(l=>companyService.matchesText(l,q));
+ if(status!=="all")data=data.filter(l=>l.status===status);
+ if(site!=="all")data=data.filter(l=>(l.siteType||"Não encontrado")===site);
+ if(prio!=="all")data=data.filter(l=>scoringService.computeScore(l).level===prio);
+ if(wa)data=data.filter(l=>!!normalizePhone(l.phone));
+ if(ig)data=data.filter(l=>(l.instagram||"").trim()!=="");
+ data=companyService.sortLeads(data,sort);
+ const ativos=[status!=="all",site!=="all",prio!=="all",wa,ig].filter(Boolean).length;
+ updateFilterBadge("td",ativos);
+ renderPaged("td",data,state.pages.todas);
+}
+
 /* ================= ABORDADAS (kanban-lite) ================= */
 function renderAbordadas(){
  if(leads.length===0){
@@ -6570,7 +6609,7 @@ bindSearch("pr_search",()=>{state.pages.prospeccao=1;renderProspeccao()});
 bindSearch("ab_search",renderAbordadas);
 bindSearch("td_search",()=>{state.pages.todas=1;renderTodas()});
 document.getElementById("td_status").addEventListener("change",()=>{state.pages.todas=1;renderTodas()});
-document.getElementById("td_siteType").addEventListener("change",()=>{state.pages.todas=1;renderTodas()});
+document.getElementById("td_siteType").addEventListener("change",()=>{state.pages.todas=1;renderTodas()}); document.getElementById("td_priority")?.addEventListener("change",()=>{state.pages.todas=1;renderTodas()}); document.getElementById("td_hasWhats")?.addEventListener("change",()=>{state.pages.todas=1;renderTodas()}); document.getElementById("td_hasInsta")?.addEventListener("change",()=>{state.pages.todas=1;renderTodas()});
 document.getElementById("td_sort").addEventListener("change",renderTodas);
 
 /* ================= ABORDAGEM (mensagem semiautomática) ================= */
@@ -6620,7 +6659,7 @@ document.getElementById("abordagemPreviewBtn").addEventListener("click",()=>{
 
 const reviewModalEl=document.getElementById("reviewModal");
 let reviewQueue=[],reviewIndex=0;
-document.getElementById("pr_reviewBtn").addEventListener("click",()=>{
+document.getElementById("pr_reviewBtn")?.addEventListener("click",()=>{
  reviewQueue=companyService.sortLeads(getProspeccaoFiltered(),"prioridade");
  if(!reviewQueue.length){toast("Nenhum lead pra revisar com os filtros atuais.");return}
  reviewIndex=0;

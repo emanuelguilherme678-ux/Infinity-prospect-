@@ -5784,6 +5784,51 @@ function renderAbordadas(){
  }).join("");
 }
 
+/* ================= LISTAS PAGINADAS (funções que estavam faltando) ================= */
+const PAGED_KEYS={pr:"prospeccao",td:"todas"};
+function renderPaged(prefix,data,page){
+ const list=document.getElementById(prefix+"_list");
+ const more=document.getElementById(prefix+"_loadmore");
+ if(!list)return;
+ if(!data.length){
+  list.innerHTML=emptyHTML(leads.length?"Nenhuma empresa encontrada com estes filtros.":"Nenhuma empresa cadastrada ainda.");
+  if(more)more.classList.add("hidden");
+  return;
+ }
+ const size=state.pageSize||50;
+ const shown=data.slice(0,page*size);
+ list.innerHTML=shown.map(cardHTML).join("");
+ if(more)more.classList.toggle("hidden",shown.length>=data.length);
+}
+function bindPagedLoadMore(prefix){
+ const btn=document.getElementById(prefix+"_loadmoreBtn");
+ const key=PAGED_KEYS[prefix];
+ if(!btn||!key)return;
+ btn.addEventListener("click",()=>{state.pages[key]=(state.pages[key]||1)+1;if(prefix==="td")renderTodas();else renderProspeccao()});
+}
+function renderTodas(){
+ const q=document.getElementById("td_search")?.value.trim()||"";
+ const status=document.getElementById("td_status")?.value||"all";
+ const site=document.getElementById("td_siteType")?.value||"all";
+ const sort=document.getElementById("td_sort")?.value||"recentes";
+ let data=leads.filter(l=>companyService.matchesText(l,q));
+ if(status!=="all")data=data.filter(l=>l.status===status);
+ if(site!=="all")data=data.filter(l=>(l.siteType||"")===site);
+ data=companyService.sortLeads(data,sort);
+ renderPaged("td",data,state.pages.todas);
+}
+function renderLeadsByStatus(listId,status,emptyMsg){
+ const el=document.getElementById(listId);
+ if(!el)return;
+ const data=companyService.sortLeads(leads.filter(l=>l.status===status),"recentes");
+ el.innerHTML=data.length?data.map(cardHTML).join(""):emptyHTML(emptyMsg);
+}
+function renderInteressados(){renderLeadsByStatus("in_list","Interessado","Nenhuma empresa interessada ainda.")}
+function renderNegociacoes(){renderLeadsByStatus("ng_list","Negociação","Nenhuma negociação em andamento.")}
+function renderClientes(){renderLeadsByStatus("cl_list","Cliente","Nenhum cliente fechado ainda.")}
+bindPagedLoadMore("pr");
+bindPagedLoadMore("td");
+
 /* ================= POR CIDADE ================= */
 function groupCount(list,key){
  const map=new Map();
@@ -6532,7 +6577,7 @@ document.getElementById("abordagemPreviewBtn").addEventListener("click",()=>{
 
 const reviewModalEl=document.getElementById("reviewModal");
 let reviewQueue=[],reviewIndex=0;
-document.getElementById("pr_reviewBtn").addEventListener("click",()=>{
+document.getElementById("pr_reviewBtn")?.addEventListener("click",()=>{
  reviewQueue=companyService.sortLeads(getProspeccaoFiltered(),"prioridade");
  if(!reviewQueue.length){toast("Nenhum lead pra revisar com os filtros atuais.");return}
  reviewIndex=0;

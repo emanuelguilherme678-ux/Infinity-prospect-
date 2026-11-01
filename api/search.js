@@ -67,7 +67,7 @@ function deriveName(title, url) {
   return host ? host.split('.')[0].replace(/[-_]+/g, ' ') : 'Empresa encontrada';
 }
 
-function tokenize(value) {
+export function tokenize(value) {
   return clean(value, 180)
     .toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
@@ -75,7 +75,7 @@ function tokenize(value) {
     .filter(w => w.length >= 3);
 }
 
-function imageMatchesCompany(image, companyName) {
+export function imageMatchesCompany(image, companyName) {
   if (!image || !companyName) return false;
   const text = [image.url, image.description, image.title, image.alt].filter(Boolean).join(' ');
   const hay = tokenize(text);

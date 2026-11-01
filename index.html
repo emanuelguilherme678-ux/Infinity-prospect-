@@ -5696,7 +5696,7 @@ function setView(view,opts){
  renderCurrentView();
  window.scrollTo({top:0,behavior:"instant" in window?"instant":"auto"});
 }
-function renderCurrentView(){
+function renderCurrentView(){ document.querySelectorAll(".view.active .reveal").forEach(function(el){el.classList.add("in")});
  switch(state.view){
   case "inicio":return;
   case "dashboard":return renderDashboard();

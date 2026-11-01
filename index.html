@@ -1775,10 +1775,10 @@ body.landing-mode .landing-reveal.delay-1{transition-delay:.08s}.landing-reveal.
 
 <!-- API SEARCH RESULTS MODAL — salvar empresa por empresa, não tudo de uma vez -->
 <div class="modal" id="apiResultsModal">
-<div class="sheet" style="max-width:640px">
+<div class="sheet api-results-sheet" style="max-width:960px">
 <h2>Resultados da busca</h2>
 <div class="sub" id="apiResultsSub">—</div>
-<div id="apiResultsList" style="max-height:60vh;overflow:auto;display:flex;flex-direction:column;gap:10px"></div>
+<div class="api-results-layout"><div id="apiResultsList" class="api-results-list"></div><aside id="apiResultsPanel" class="api-results-panel" aria-live="polite"></aside></div>
 <div class="modal-actions"><div></div><div class="right">
 <button type="button" class="secondary" id="apiResultsCloseBtn">Fechar</button>
 </div></div>
@@ -5029,6 +5029,27 @@ body:not(.landing-mode) .prospect-check{
 /* Tela Encontrar clientes: acento vermelho no lugar do roxo (escopo restrito) */
 .prospect-reference{--accent:#e5484d;--accent-dim:#7a1f22;--accent-soft:#ffd6d7;background:radial-gradient(500px 330px at 50% 8%,rgba(229,72,77,.08),transparent 72%)!important}
 </style>
+<style id="api-results-side-panel">
+.api-results-sheet{width:min(960px,calc(100vw - 32px))}
+.api-results-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}
+.api-results-list{max-height:60vh;overflow:auto;display:flex;flex-direction:column;gap:10px;padding-right:4px}
+.api-results-list .result-card{cursor:pointer}
+.api-results-list .result-card.is-selected{border-color:var(--accent)}
+.api-results-panel{position:sticky;top:0;max-height:60vh;overflow:auto;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.api-panel-name{margin:0 0 8px;font-size:18px;line-height:1.3}
+.api-panel-chance{margin:0 0 14px}
+.api-panel-facts{margin:0 0 14px;display:grid;gap:10px}
+.api-panel-facts div{display:grid;gap:2px}
+.api-panel-facts dt{font-size:12px;color:var(--muted)}
+.api-panel-facts dd{margin:0;font-size:14px}
+.api-panel-facts a{color:var(--accent-soft)}
+.api-panel-approach{font-size:14px;line-height:1.55;margin:0 0 16px}
+@media (max-width:760px){
+  .api-results-layout{grid-template-columns:1fr}
+  .api-results-list{max-height:none}
+  .api-results-panel{position:static;max-height:none}
+}
+</style>
 </head><body>
   ${hero}
   <section class="grid"><h2>${profile.sectionLabel}</h2><div class="services-grid">${servicesHTML}</div></section>
@@ -6083,6 +6104,7 @@ function chanceLabel(score){
 function openApiResults(data){
  data=[...data].sort((a,b)=>chanceScore(b)-chanceScore(a));
  apiResultsData=data;
+ apiResultSelected=data.length?0:-1;
  document.getElementById("apiResultsSub").textContent=`${data.length} empresa(s) encontrada(s). Clique em "Salvar" só nas que quiser abordar depois — o resto não é gravado.`;
  renderApiResultsList();
  apiResultsModalEl.classList.add("show");
@@ -6124,10 +6146,49 @@ function apiResultCardHTML(l,idx){
    </div>
   </div>`;
 }
+let apiResultSelected=-1;
 function renderApiResultsList(){
  document.getElementById("apiResultsList").innerHTML=apiResultsData.length
   ?apiResultsData.map((l,i)=>apiResultCardHTML(l,i)).join("")
   :`<div class="empty">Nenhum resultado.</div>`;
+ document.querySelectorAll("#apiResultsList .result-card").forEach((c,i)=>c.classList.toggle("is-selected",i===apiResultSelected));
+ renderApiResultPanel();
+}
+function openApiResultDetails(idx){
+ if(!apiResultsData[idx])return;
+ apiResultSelected=idx;
+ renderApiResultsList();
+ const card=document.getElementById("result_"+idx);
+ if(card&&card.scrollIntoView)card.scrollIntoView({block:"nearest"});
+}
+function renderApiResultPanel(){
+ const panel=document.getElementById("apiResultsPanel");
+ if(!panel)return;
+ const l=apiResultsData[apiResultSelected];
+ if(!l){panel.innerHTML=`<div class="empty">Escolha uma empresa na lista para ver os detalhes.</div>`;return}
+ const idx=apiResultSelected;
+ const score=chanceScore(l);
+ const site=safeHttpUrl(l.site);
+ const dup=companyService.findDuplicate(l,leads);
+ const phone=l.tel||l.phone||"";
+ const approach=!site
+   ?"A empresa não tem site. Ofereça um site simples para captar clientes pelo Google."
+   :!phone
+   ?"Tem site, mas não há telefone. Comece pelo Instagram ou pelo Maps."
+   :"Tem site e telefone. Ligue ou mande mensagem com uma sugestão específica de melhoria.";
+ panel.innerHTML=`
+  <h3 class="api-panel-name">${esc(l.name)}</h3>
+  <p class="api-panel-chance"><span class="chip">${chanceLabel(score)} · ${score}/100</span></p>
+  <dl class="api-panel-facts">
+    <div><dt>Nicho e cidade</dt><dd>${esc([l.nicho,l.cidade].filter(Boolean).join(" · ")||"—")}</dd></div>
+    <div><dt>Telefone</dt><dd>${phone?esc(phone):"Não encontrado"}</dd></div>
+    <div><dt>Site</dt><dd>${site?`<a href="${esc(site)}" target="_blank" rel="noopener noreferrer">Abrir site</a>`:"Não encontrado"}</dd></div>
+    <div><dt>Avaliação</dt><dd>${l.rating?esc(l.rating)+"★"+(l.reviews?" ("+esc(l.reviews)+" avaliações)":""):"—"}</dd></div>
+  </dl>
+  <p class="api-panel-approach"><strong>Abordagem sugerida.</strong> ${esc(approach)}</p>
+  <div class="api-panel-actions">
+    ${dup?`<span class="chip">Já cadastrada: ${esc(dup.name)}</span>`:`<button class="primary" type="button" data-action="save-api-result" data-index="${idx}">Salvar pra abordar depois</button>`}
+  </div>`;
 }
 function saveApiResult(idx){
  const l=apiResultsData[idx];if(!l)return;

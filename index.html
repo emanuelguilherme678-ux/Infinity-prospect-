@@ -5949,7 +5949,7 @@ function fichaSaveField(field,value){
  l[field]=value;l.updatedAt=new Date().toISOString();
  persist();toast("Salvo.");
 }
-function fichaSaveFinance(){
+async function fichaSaveFinance(){
  const l=leads.find(x=>x.id===fichaCurrentId);if(!l)return;
  const faturamento=parseMoney(document.getElementById("fichaFaturamento")?.value);
  const lucro=parseMoney(document.getElementById("fichaLucro")?.value);
@@ -5959,6 +5959,10 @@ function fichaSaveFinance(){
  l.resultadoAt=new Date().toISOString();
  l.updatedAt=l.resultadoAt;
  persist();
+ if(SUPABASE_READY&&authUser){
+  const {error}=await supabaseClient.from("leads").update({faturamento:faturamento||null,lucro:lucro||null,resultado_at:l.resultadoAt}).eq("user_id",authUser.id).eq("id",l.id);
+  if(error){console.error("Não foi possível salvar o resultado na nuvem:",error);toast("Resultado salvo neste dispositivo. Não foi possível enviar para a nuvem.")}
+ }
  openFicha(fichaCurrentId);
  document.querySelectorAll("#fichaTabs .ficha-tab").forEach(t=>t.classList.toggle("active",t.dataset.tab==="oportunidade"));
  document.querySelectorAll("#fichaBody .ficha-pane").forEach(p=>p.classList.toggle("active",p.dataset.pane==="oportunidade"));

@@ -6068,7 +6068,20 @@ document.getElementById("pr_apiBtn").addEventListener("click",async function(){
 /* ================= RESULTADOS DA BUSCA — salvar empresa por empresa ================= */
 const apiResultsModalEl=document.getElementById("apiResultsModal");
 let apiResultsData=[];
+function chanceScore(l){
+ let s=0;
+ if(!safeHttpUrl(l.site)) s+=40;
+ const r=parseFloat(String(l.rating||"").replace(",","."))||0;
+ const n=parseInt(String(l.reviews||"").replace(/\D/g,""),10)||0;
+ if(r>=4&&n>=20) s+=30; else if(n>=5) s+=15;
+ if(l.tel||l.phone) s+=30;
+ return Math.min(100,s);
+}
+function chanceLabel(score){
+ return score>=70?"Chance alta":score>=40?"Chance média":"Chance baixa";
+}
 function openApiResults(data){
+ data=[...data].sort((a,b)=>chanceScore(b)-chanceScore(a));
  apiResultsData=data;
  document.getElementById("apiResultsSub").textContent=`${data.length} empresa(s) encontrada(s). Clique em "Salvar" só nas que quiser abordar depois — o resto não é gravado.`;
  renderApiResultsList();
@@ -6098,7 +6111,7 @@ function apiResultCardHTML(l,idx){
   ].filter(Boolean).join("<br>");
  return `<div class="result-card" id="result_${idx}">
    <div class="search-result-media">${imageHtml}<div>
-    <div class="result-name">${esc(l.name)}</div>
+    <div class="result-name">${esc(l.name)} <span class="chip">${chanceLabel(chanceScore(l))} · ${chanceScore(l)}/100</span></div>
     <div class="result-meta">${esc(l.nicho||"")}${l.cidade?" · "+esc(l.cidade):""}</div>
     ${context?`<div class="search-result-context">${esc(context.length>220?context.slice(0,217)+"…":context)}</div>`:""}
    </div></div>
